@@ -1,6 +1,10 @@
-const express = require('express')
+const express = require('express');
+const morgan = require('morgan');
 const app = express()
 const port = 3000
+
+app.use(morgan('dev'));
+app.use(morgan('combined'));
 
 var strJSON=require('./JSON-raw');
 
@@ -14,7 +18,9 @@ content.Data[0].FreightStatus.AWBSuffix = strAWBSuffix;
 
 //console.log("Content" + JSON.stringify(content, null, 2));
 
-app.get('/', (req, res) => res.send('Welcome GLSHK'))
+app.get('/', (req, res) => {
+	res.send('Welcome GLSHK')
+});
 
 app.get("/api/Test", (req, res, next) => {
 
